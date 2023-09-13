@@ -9,7 +9,29 @@
     --accent: #8839ef;
 
     background-color: var(--base);
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
     color: var(--text);
+}
+
+main {
+    padding: 2rem;
+}
+
+footer {
+    margin: 2rem;
+    background-color: var(--surface);
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+h1,
+h2 {
+    margin-bottom: 1rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -29,15 +51,16 @@
 }
 
 .list__item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.1rem;
     background-color: var(--surface);
     padding: 1rem;
     border-radius: 0.5rem;
+    text-decoration: none;
+    cursor: pointer;
 }
 
-.list__item:hover {
-    background-color: var(--surface-1);
-    backdrop-filter: drop-shadow(0 0 0.5rem var(--accent));
+@media (hover: hover) {
+    .list__item:hover {
+        background-color: var(--surface-1);
+        filter: drop-shadow(0 0 1rem var(--accent));
+    }
 }

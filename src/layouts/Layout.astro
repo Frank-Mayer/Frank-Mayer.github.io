@@ -1,12 +1,9 @@
 ---
-import { fetchRepos } from "../lib/repo"
 interface Props {}
 
 const gh = await fetch("https://api.github.com/users/Frank-Mayer").then((res) =>
     res.json(),
 )
-
-const fetchedRepos = await fetchRepos()
 ---
 
 <!doctype html>
@@ -25,10 +22,15 @@ const fetchedRepos = await fetchRepos()
             <h1>{gh.login}</h1>
             <slot />
         </main>
-        <input
-            type="hidden"
-            id="prefetched-repos"
-            value={JSON.stringify(fetchedRepos)}
-        />
+        <footer>
+            Build using <a
+                href="https://astro.build/"
+                target="_blank"
+                rel="noopener noreferrer">Astro</a
+            > and <a
+                href="https://www.solidjs.com/"
+                target="_blank"
+                rel="noopener noreferrer">SolidJS</a>
+        </footer>
     </body>
 </html>

@@ -29,14 +29,20 @@ export function Recent() {
                                     )}
                                 ></p>
                                 <table>
-                                    <tr>
-                                        <td>Last updated</td>
-                                        <td>{new Date(item.latestUpdate).toDateString()}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Languages</td>
-                                        <td>{item.langs.join(", ")}</td>
-                                    </tr>
+                                    <tbody>
+                                        <tr>
+                                            <td>Last updated:&nbsp;</td>
+                                            <td>
+                                                {new Date(
+                                                    item.latestUpdate,
+                                                ).toDateString()}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Languages:&nbsp;</td>
+                                            <td>{item.langs.join(", ")}</td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </a>
                         )}
