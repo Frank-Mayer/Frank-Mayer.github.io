@@ -23,10 +23,19 @@ main {
 }
 
 footer {
-    margin: 2rem;
     background-color: var(--surface);
     padding: 1rem;
     border-radius: 0.5rem;
+    position: fixed;
+    display: block;
+    bottom: 1rem;
+    left: 2rem;
+    right: 2rem;
+}
+
+footer a {
+    color: var(--accent);
+    text-decoration: underline;
 }
 
 h1,

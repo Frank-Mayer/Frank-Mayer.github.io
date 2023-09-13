@@ -56,6 +56,10 @@ export async function fetchRepos(): Promise<Array<Repo>> {
         const apiRepos = await response.json()
 
         for (const apiRepo of apiRepos) {
+            // if (apiRepo.fork) {
+            //     continue
+            // }
+
             const latestUpdate = latestDate(
                 apiRepo.created_at,
                 apiRepo.updated_at,
@@ -94,7 +98,7 @@ export async function fetchRepos(): Promise<Array<Repo>> {
         // Sort by latest update
         data.sort((a, b) => b.latestUpdate - a.latestUpdate)
 
-        // only return the first 6 repos
-        return data.slice(0, 6)
+        // Limit to 10 repos
+        return data.slice(0, 10)
     }
 }

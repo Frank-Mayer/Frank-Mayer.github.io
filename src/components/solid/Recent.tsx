@@ -19,7 +19,12 @@ export function Recent() {
                 <Match when={arr().length > 0}>
                     <For each={arr()}>
                         {(item) => (
-                            <a class="list__item" href={item.url}>
+                            <a
+                                class="list__item"
+                                href={item.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
                                 <h3
                                     innerHTML={escapeHtml(mapEmotes(item.name))}
                                 ></h3>
