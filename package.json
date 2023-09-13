@@ -1,0 +1,30 @@
+{
+    "name": "Frank-Mayer.github.io",
+    "type": "module",
+    "version": "1.0.0",
+    "scripts": {
+        "dev": "astro dev",
+        "start": "astro dev",
+        "build": "astro build",
+        "preview": "astro preview",
+        "astro": "astro"
+    },
+    "prettier": {
+        "printWidth": 80,
+        "tabWidth": 4,
+        "useTabs": false,
+        "semi": false,
+        "singleQuote": false,
+        "endOfLine": "lf",
+        "embeddedLanguageFormatting": "auto"
+    },
+    "dependencies": {
+        "@astrojs/solid-js": "^3.0.1",
+        "astro": "^3.0.13",
+        "solid-js": "^1.7.11"
+    },
+    "devDependencies": {
+        "prettier-plugin-astro": "^0.12.0",
+        "prettier": "^3.0.3"
+    }
+}

@@ -1,0 +1,32 @@
+---
+import { fetchRepos } from "../lib/repo.ts"
+interface Props {}
+
+const gh = await fetch("https://api.github.com/users/Frank-Mayer").then((res) =>
+    res.json(),
+)
+
+const fetchedRepos = await fetchRepos()
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content="Astro description" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/png" href={gh.avatar_url} />
+        <meta name="generator" content={Astro.generator} />
+        <title>{gh.login}</title>
+        <link rel="stylesheet" href="/styles/global.css" />
+    </head>
+    <body>
+        <main>
+            <h1>{gh.login}</h1>
+            <slot />
+        </main>
+        <script id="data" type="application/json">
+            {JSON.stringify(fetchedRepos)}
+        </script>
+    </body>
+</html>
