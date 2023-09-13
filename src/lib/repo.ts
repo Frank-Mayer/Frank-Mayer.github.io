@@ -17,7 +17,9 @@ function getHtmlData(): Array<Repo> {
     }
 
     // get data from html
-    const prefetchedReposEl = window.document.getElementById("prefetched-repos") as HTMLInputElement | null
+    const prefetchedReposEl = window.document.getElementById(
+        "prefetched-repos",
+    ) as HTMLInputElement | null
     if (!prefetchedReposEl) {
         return new Array<Repo>()
     }
@@ -39,6 +41,8 @@ function getHtmlData(): Array<Repo> {
 export async function fetchRepos(): Promise<Array<Repo>> {
     const data = new Array<Repo>()
 
+    const minDate = Date.now() - 1000 * 60 * 60 * 24 * 30 // 30 days
+
     try {
         const response = await fetch(
             "https://api.github.com/users/Frank-Mayer/repos",
@@ -52,8 +56,18 @@ export async function fetchRepos(): Promise<Array<Repo>> {
         const apiRepos = await response.json()
 
         for (const apiRepo of apiRepos) {
+            const latestUpdate = latestDate(
+                apiRepo.created_at,
+                apiRepo.updated_at,
+                apiRepo.pushed_at,
+            )
+
+            if (latestUpdate < minDate) {
+                continue
+            }
+
             const daraRepo: Repo = {
-                name: apiRepo.name,
+                name: apiRepo.full_name,
                 description: apiRepo.description,
                 url: apiRepo.html_url,
                 langs: new Array<string>(),

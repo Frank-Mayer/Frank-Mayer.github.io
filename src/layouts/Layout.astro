@@ -25,6 +25,10 @@ const fetchedRepos = await fetchRepos()
             <h1>{gh.login}</h1>
             <slot />
         </main>
-        <input type="hidden" id="prefetched-repos" value={JSON.stringify(fetchedRepos)} />
+        <input
+            type="hidden"
+            id="prefetched-repos"
+            value={JSON.stringify(fetchedRepos)}
+        />
     </body>
 </html>
