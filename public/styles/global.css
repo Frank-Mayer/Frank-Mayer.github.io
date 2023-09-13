@@ -1,4 +1,43 @@
 :root {
     color-scheme: light dark;
     font-family: "Roboto", sans-serif;
+
+    --base: #eff1f5;
+    --surface: #ccd0da;
+    --surface-1: #bcc0cc;
+    --text: #4c4f69;
+    --accent: #8839ef;
+
+    background-color: var(--base);
+    color: var(--text);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --base: #1e1e2e;
+        --surface: #313244;
+        --surface-1: #45475a;
+        --text: #cdd6f4;
+        --accent: #cba6f7;
+    }
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.list__item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    background-color: var(--surface);
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+.list__item:hover {
+    background-color: var(--surface-1);
+    backdrop-filter: drop-shadow(0 0 0.5rem var(--accent));
 }

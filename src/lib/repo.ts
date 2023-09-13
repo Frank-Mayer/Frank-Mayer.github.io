@@ -68,26 +68,18 @@ export async function fetchRepos(): Promise<Array<Repo>> {
 
             const daraRepo: Repo = {
                 name: apiRepo.full_name,
-                description: apiRepo.description,
+                description: apiRepo.description ?? "",
                 url: apiRepo.html_url,
                 langs: new Array<string>(),
-                latestUpdate: latestDate(
-                    apiRepo.created_at,
-                    apiRepo.updated_at,
-                    apiRepo.pushed_at,
-                ),
+                latestUpdate,
             }
 
             try {
                 const langResp = await fetch(apiRepo.languages_url)
-                if (!langResp.ok) {
-                    console.error(
-                        `Error ${langResp.status}: ${langResp.statusText}`,
-                    )
-                    continue
+                if (langResp.ok) {
+                    const apiLangs = await langResp.json()
+                    daraRepo.langs = Object.keys(apiLangs)
                 }
-                const apiLangs = await langResp.json()
-                daraRepo.langs = Object.keys(apiLangs)
             } finally {
                 data.push(daraRepo)
             }

@@ -14,12 +14,12 @@ export function Recent() {
     fetchData()
 
     return (
-        <div>
+        <div class="list">
             <Switch>
                 <Match when={arr().length > 0}>
                     <For each={arr()}>
                         {(item) => (
-                            <a href={item.url}>
+                            <a class="list__item" href={item.url}>
                                 <h3
                                     innerHTML={escapeHtml(mapEmotes(item.name))}
                                 ></h3>
@@ -28,10 +28,16 @@ export function Recent() {
                                         mapEmotes(item.description),
                                     )}
                                 ></p>
-                                <p>
-                                    Last updated:{" "}
-                                    {new Date(item.latestUpdate).toDateString()}
-                                </p>
+                                <table>
+                                    <tr>
+                                        <td>Last updated</td>
+                                        <td>{new Date(item.latestUpdate).toDateString()}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Languages</td>
+                                        <td>{item.langs.join(", ")}</td>
+                                    </tr>
+                                </table>
                             </a>
                         )}
                     </For>
