@@ -17,16 +17,16 @@ function getHtmlData(): Array<Repo> {
     }
 
     // get data from html
-    const prefetchedReposEl = window.document.getElementById("prefetched-repos")
+    const prefetchedReposEl = window.document.getElementById("prefetched-repos") as HTMLInputElement | null
     if (!prefetchedReposEl) {
         return new Array<Repo>()
     }
 
-    if (!prefetchedReposEl.textContent) {
+    if (!prefetchedReposEl.value) {
         return new Array<Repo>()
     }
 
-    const prefetchedRepos = JSON.parse(prefetchedReposEl.textContent)
+    const prefetchedRepos = JSON.parse(prefetchedReposEl.value)
 
     // check if data is valid
     if (!Array.isArray(prefetchedRepos)) {
