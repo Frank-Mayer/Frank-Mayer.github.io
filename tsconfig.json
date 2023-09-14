@@ -1,7 +1,4 @@
 {
     "extends": "astro/tsconfigs/strictest",
-    "compilerOptions": {
-        "jsx": "preserve",
-        "jsxImportSource": "solid-js"
-    }
+    "types": ["bun-types"]
 }
