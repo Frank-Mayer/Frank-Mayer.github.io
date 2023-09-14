@@ -917,6 +917,10 @@ emoteMap.set("small_blue_diamond", "🔹")
 emoteMap.set("small_orange_diamond", "🔸")
 emoteMap.set("small_red_triangle", "🔺")
 emoteMap.set("small_red_triangle_down", "🔻")
+emoteMap.set("vampire", "🧛")
+emoteMap.set("zombie", "🧟")
+emoteMap.set("mermaid", "🧜")
+emoteMap.set("elf", "🧝")
 emoteMap.set(
     "shipit",
     "https://github.githubassets.com/images/icons/emoji/shipit.png",

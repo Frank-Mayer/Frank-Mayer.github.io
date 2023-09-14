@@ -1,16 +1,53 @@
 ---
 import Layout from "../layouts/Layout.astro"
-import Recent from "../components/solid/Recent"
-import { fetchRepos } from "../lib/repo"
-const fetchedRepos = await fetchRepos()
+import { mapEmotes } from "../lib/emote"
+import { getRepos } from "../lib/gh"
+import { escapeHtml } from "../lib/html"
+
+const data = await getRepos()
 ---
 
 <Layout>
-    <h2>Recent</h2>
-    <Recent client:load />
-    <input
-        type="hidden"
-        id="prefetched-repos"
-        value={JSON.stringify(fetchedRepos)}
-    />
+    <h2>Recent activity</h2>
+    <div class="list">
+        {
+            data.map((repo) => (
+                <a
+                    class="list__item"
+                    href={repo.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    {repo.avatar ? (
+                        <img
+                            class="list__item__avatar"
+                            src={repo.avatar}
+                            alt=""
+                        />
+                    ) : null}
+                    <div class="list__item__content">
+                        <h3 class="list__item__title">{repo.name}</h3>
+                        <p
+                            class="list__item__description"
+                            set:html={mapEmotes(escapeHtml(repo.description))}
+                        />
+                        <table>
+                            <tbody>
+                                {repo.languages.length ? (
+                                    <tr>
+                                        <td>Languages:&nbsp;</td>
+                                        <td>
+                                            {repo.languages
+                                                .slice(0, 4)
+                                                .join(", ")}
+                                        </td>
+                                    </tr>
+                                ) : null}
+                            </tbody>
+                        </table>
+                    </div>
+                </a>
+            ))
+        }
+    </div>
 </Layout>

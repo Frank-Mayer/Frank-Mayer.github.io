@@ -19,12 +19,14 @@
     "embeddedLanguageFormatting": "auto"
   },
   "dependencies": {
-    "@astrojs/solid-js": "^3.0.1",
     "astro": "^3.0.13",
-    "solid-js": "^1.7.11"
+    "octokit": "^3.1.0",
+    "showdown": "^2.1.0"
   },
   "devDependencies": {
-    "prettier-plugin-astro": "^0.12.0",
-    "prettier": "^3.0.3"
+    "@types/node": "^20.6.0",
+    "@types/showdown": "^2.0.1",
+    "prettier": "^3.0.3",
+    "prettier-plugin-astro": "^0.12.0"
   }
 }

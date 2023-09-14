@@ -1,9 +1,9 @@
 ---
+import { getProfile } from "../lib/gh"
+
 interface Props {}
 
-const gh = await fetch("https://api.github.com/users/Frank-Mayer").then((res) =>
-    res.json(),
-)
+const ghProfile = await getProfile()
 ---
 
 <!doctype html>
@@ -12,14 +12,14 @@ const gh = await fetch("https://api.github.com/users/Frank-Mayer").then((res) =>
         <meta charset="UTF-8" />
         <meta name="description" content="Astro description" />
         <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/png" href={gh.avatar_url} />
+        <link rel="icon" type="image/png" href={ghProfile.avatar} />
         <meta name="generator" content={Astro.generator} />
-        <title>{gh.login}</title>
+        <title>{ghProfile.name}</title>
         <link rel="stylesheet" href="/styles/global.css" />
     </head>
     <body>
         <main>
-            <h1>{gh.login}</h1>
+            <h1>{ghProfile.name}</h1>
             <slot />
         </main>
         <footer>
@@ -27,10 +27,7 @@ const gh = await fetch("https://api.github.com/users/Frank-Mayer").then((res) =>
                 href="https://astro.build/"
                 target="_blank"
                 rel="noopener noreferrer">Astro</a
-            > and <a
-                href="https://www.solidjs.com/"
-                target="_blank"
-                rel="noopener noreferrer">SolidJS</a>
+            >
         </footer>
     </body>
 </html>
